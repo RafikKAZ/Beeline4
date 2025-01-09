@@ -1,98 +1,54 @@
-/* Общие стили */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #333;
-    background-color: #f6f6f6;
-}
-
-header {
-    background-color: #f0c218;
-    color: #000;
-    text-align: center;
+    background-color: #f4f4f4;
     padding: 20px;
-}
-
-header h1 {
     margin: 0;
-    font-size: 24px;
 }
 
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #f0c218;
-    color: #000;
-}
-
-main {
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
     padding: 20px;
-}
-
-.content-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-@media (max-width: 768px) {
-    .content-wrapper {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Секция формы */
-.form-section {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 label {
-    display: block;
     margin-bottom: 8px;
-    font-weight: bold;
-    color: #000;
 }
 
 input, select, button {
-    width: 100%;
     padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
+    margin-bottom: 15px;
     border-radius: 4px;
-    font-size: 14px;
+    border: 1px solid #ccc;
 }
 
 button {
-    background-color: #f0c218;
-    color: #000;
-    border: none;
+    background-color: #0095b6;
+    color: white;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
 }
 
 button:hover {
-    background-color: #e6b612;
-}
-
-/* Карта */
-.map-section {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 0;
-    overflow: hidden;
+    background-color: #007b8f;
 }
 
 #map {
-    width: 100%;
-    height: 400px;
+    margin-bottom: 15px;
 }
+
 
 /* Мобильные устройства */
 @media (max-width: 768px) {
