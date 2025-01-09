@@ -1,71 +1,81 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("connectionForm");
-    const citySelect = document.getElementById("city");
-    const addressInput = document.getElementById("address");
-    const coordinatesInput = document.getElementById("coordinates");
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('request-form');
+    const submitButton = document.getElementById('submit-button');
+    
     let map, placemark;
 
-    ymaps.ready(() => {
-        map = new ymaps.Map("map", {
-            center: [43.238949, 76.889709], // Координаты Алматы по умолчанию
-            zoom: 12,
+    // Инициализация карты Яндекс
+    ymaps.ready(function () {
+        map = new ymaps.Map('map', {
+            center: [43.2220, 76.8512], // Начальный центр карты (например, Алматы)
+            zoom: 10
         });
 
-        map.events.add("click", (e) => {
-            const coords = e.get("coords");
-            if (placemark) map.geoObjects.remove(placemark);
-            placemark = new ymaps.Placemark(coords);
-            map.geoObjects.add(placemark);
-
-            ymaps.geocode(coords).then((res) => {
-                const firstGeoObject = res.geoObjects.get(0);
-                addressInput.value = firstGeoObject.getAddressLine();
-                coordinatesInput.value = coords.join(", ");
-            });
+        placemark = new ymaps.Placemark(map.getCenter(), {
+            hintContent: 'Ваш дом'
+        }, {
+            preset: 'islands#icon',
+            iconColor: '#0095b6'
         });
-    });
 
-    citySelect.addEventListener("change", () => {
-        const city = citySelect.value;
-        ymaps.geocode(city).then((res) => {
-            const firstGeoObject = res.geoObjects.get(0);
-            const coords = firstGeoObject.geometry.getCoordinates();
-            map.setCenter(coords, 12);
+        map.geoObjects.add(placemark);
+
+        map.events.add('click', function (e) {
+            const coords = e.get('coords');
+            placemark.geometry.setCoordinates(coords);
+
+            // Записываем координаты в поле адреса
+            document.getElementById('address').value = `Координаты: ${coords[0]}, ${coords[1]}`;
         });
     });
 
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+    // Проверка валидности всех полей формы
+    function validateForm() {
+        const city = document.getElementById('city').value.trim();
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const address = document.getElementById('address').value.trim();
 
-        if (![...form.elements].every((input) => input.value.trim())) {
-            alert("Заполните все поля!");
-            return;
+        // Проверяем, что все поля заполнены
+        if (!city || !name || !phone || !address) {
+            alert("Пожалуйста, заполните все поля!");
+            return false;
         }
+        return true;
+    }
 
-        const data = {
-            city: citySelect.value,
-            fullName: document.getElementById("fullName").value,
-            phoneNumber: document.getElementById("phoneNumber").value,
-            address: addressInput.value,
-            coordinates: coordinatesInput.value,
+    // Обработчик отправки формы
+    form.addEventListener('submit', function (event) {
+        event.preventDefault(); // Останавливаем стандартную отправку формы
+
+        if (validateForm()) {
+            const formData = {
+                city: document.getElementById('city').value,
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value
+            };
+
+            // Отправляем данные на сервер (например, в Google Sheets)
+            sendData(formData);
+        }
+    });
+
+    // Функция отправки данных
+    function sendData(data) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'https://script.google.com/macros/s/AKfycbwAj5jmO20rc5_0ZjvgaVlBUc2pmnNFbh4NdhjIvknYZR_ByQI_QI2aNBjLPWhrkn1Ltg/exec', true); // URL вашего скрипта
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    alert('Заявка успешно отправлена!');
+                } else {
+                    alert('Ошибка при отправке заявки');
+                }
+            }
         };
 
-        try {
-            const response = await fetch("https://script.google.com/macros/s/AKfycbwAj5jmO20rc5_0ZjvgaVlBUc2pmnNFbh4NdhjIvknYZR_ByQI_QI2aNBjLPWhrkn1Ltg/exec", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
-            });
-
-            if (response.ok) {
-                alert("Заявка успешно отправлена!");
-                form.reset();
-            } else {
-                throw new Error("Ошибка при отправке данных.");
-            }
-        } catch (error) {
-            console.error(error);
-            alert("Произошла ошибка. Повторите попытку.");
-        }
-    });
+        xhr.send(JSON.stringify(data));
+    }
 });
