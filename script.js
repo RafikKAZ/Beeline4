@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
             placemark = new ymaps.Placemark(coords);
             map.geoObjects.add(placemark);
 
-            // Обновление полей адреса и координат
             ymaps.geocode(coords).then((res) => {
                 const firstGeoObject = res.geoObjects.get(0);
                 addressInput.value = firstGeoObject.getAddressLine();
@@ -38,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        // Проверка заполненности полей
         if (![...form.elements].every((input) => input.value.trim())) {
             alert("Заполните все поля!");
             return;
