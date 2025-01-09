@@ -3,54 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Оставьте заявку на подключение дома</title>
+    <title>Подключение к интернету</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://api-maps.yandex.ru/2.1/?apikey=29954df2-70a5-4786-a0ad-417a1b83ef95&lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
     <header>
-        <h1>Оставьте заявку на подключение дома</h1>
+        <h1>Интернет Дома от Beeline</h1>
     </header>
     <main>
-        <section class="form-section">
-            <p>
-                Если Вашего дома нет в списке, значит, Вам сейчас нельзя подключить наш скоростной домашний интернет по оптоволокну.  
-                Но это временно. Мы каждый год строим и расширяем сеть, чтобы как можно больше людей смогли пользоваться «Интернет Дома».
-                Оставьте заявку, и мы рассмотрим Ваш адрес. Если заявок из Вашего ЖК будет много, мы скорректируем свои планы и пересмотрим график работ.
-            </p>
-            <form id="connectionForm">
-                <label for="city">Выберите город:</label>
-                <select id="city" name="city" required>
-                    <option value="" disabled selected>Выберите...</option>
-                    <option value="Алматы">Алматы</option>
-                    <option value="Астана">Астана</option>
-                    <option value="Шымкент">Шымкент</option>
-                    <option value="Караганда">Караганда</option>
-                    <option value="Костанай">Костанай</option>
-                    <!-- Добавьте другие города -->
-                </select>
+        <section class="content-wrapper">
+            <div class="form-section">
+                <p>
+                    Оставьте заявку на подключение. Если Вашего дома пока нет в списке, мы рассмотрим Ваш адрес и, 
+                    возможно, внесем изменения в наши планы строительства сети.
+                </p>
+                <form id="connectionForm">
+                    <label for="city">Выберите город:</label>
+                    <select id="city" name="city" required>
+                        <option value="" disabled selected>Выберите...</option>
+                        <option value="Алматы">Алматы</option>
+                        <option value="Астана">Астана</option>
+                        <option value="Шымкент">Шымкент</option>
+                        <option value="Караганда">Караганда</option>
+                        <option value="Костанай">Костанай</option>
+                        <!-- Добавьте другие города -->
+                    </select>
 
-                <label for="fullName">ФИО:</label>
-                <input type="text" id="fullName" name="fullName" placeholder="Введите ваше ФИО" required>
+                    <label for="fullName">ФИО:</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Введите ваше ФИО" required>
 
-                <label for="phoneNumber">Контактный номер:</label>
-                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+7 XXX XXX XX XX" required pattern="\+7 \d{3} \d{3} \d{2} \d{2}">
+                    <label for="phoneNumber">Контактный номер:</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+7 XXX XXX XX XX" required pattern="\+7 \d{3} \d{3} \d{2} \d{2}">
 
-                <label for="address">Адрес дома:</label>
-                <input type="text" id="address" name="address" placeholder="Выберите адрес на карте" readonly required>
+                    <label for="address">Адрес дома:</label>
+                    <input type="text" id="address" name="address" placeholder="Выберите адрес на карте" readonly required>
 
-                <label for="coordinates">Координаты:</label>
-                <input type="text" id="coordinates" name="coordinates" placeholder="Автоматически заполнится" readonly required>
+                    <label for="coordinates">Координаты:</label>
+                    <input type="text" id="coordinates" name="coordinates" placeholder="Автоматически заполнится" readonly required>
 
-                <button type="submit">Отправить заявку</button>
-            </form>
-        </section>
-        <section class="map-section">
-            <div id="map"></div>
+                    <button type="submit">Отправить заявку</button>
+                </form>
+            </div>
+            <div class="map-section">
+                <div id="map"></div>
+            </div>
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 Подключение к интернету</p>
+        <p>&copy; 2025 Beeline Казахстан</p>
     </footer>
     <script src="script.js"></script>
 </body>
