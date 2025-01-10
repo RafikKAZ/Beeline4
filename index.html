@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -9,6 +10,10 @@
 </head>
 <body>
     <h1>Оставить заявку на подключение</h1>
+    <h2>Если Вашего дома нет в списке</h2>
+    <p>
+        Если Вашего дома нет в списке, значит, Вам сейчас нельзя подключить наш скоростной домашний интернет по оптоволокну. Но это временно. Мы каждый год строим и расширяем сеть, чтобы как можно больше людей смогли пользоваться «Интернет Дома». Оставьте заявку, и мы рассмотрим Ваш адрес. Если заявок из Вашего ЖК будет много, мы скорректируем свои планы и пересмотрим график работ.
+    </p>
     <form id="submissionForm">
         <label for="city">Город:</label>
         <select id="city" name="city" required>
@@ -24,10 +29,10 @@
         <input type="text" id="phone" name="phone" required>
 
         <label for="address">Адрес дома:</label>
-        <input type="text" id="address" name="address" readonly required>
+        <input type="text" id="address" name="address" readonly required placeholder="Выберите адрес на карте">
 
         <label for="coordinates">Координаты:</label>
-        <input type="text" id="coordinates" name="coordinates" readonly required>
+        <input type="text" id="coordinates" name="coordinates" readonly required placeholder="Автоматически заполняются">
 
         <div id="map"></div>
 
