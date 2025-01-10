@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     // Карта Яндекс
     let map, placemark;
@@ -68,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 body: formData,
             });
 
-            alert("Спасибо за заявку! Мы рассмотрим её в ближайшие несколько рабочих дней.
+             alert("Спасибо за заявку! Мы рассмотрим её в ближайшие несколько рабочих дней.
 
 Если большинство жителей Вашего дома подадут заявки на подключение «Интернет Дома», мы сможем приоритизировать строительство сети по Вашему адресу.
 
@@ -79,4 +78,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
