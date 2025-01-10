@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     // Карта Яндекс
     let map, placemark;
@@ -67,11 +68,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 body: formData,
             });
 
-            const result = await response.text();
-            alert(result);
+            alert("Спасибо за заявку! Мы рассмотрим её в ближайшие несколько рабочих дней.
+
+Если большинство жителей Вашего дома подадут заявки на подключение «Интернет Дома», мы сможем приоритизировать строительство сети по Вашему адресу.
+
+Спасибо за доверие!");
         } catch (error) {
             console.error("Ошибка:", error);
             alert("Произошла ошибка при отправке данных.");
         }
     });
 });
+
